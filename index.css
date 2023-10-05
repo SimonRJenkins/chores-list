@@ -15,12 +15,87 @@ html,
 body {
     margin: 0;
     padding: 0;
+    text-align: center;
 }
 
 h1 {
     font-family: 'Concert One', cursive;
+    font-size: 64px;
 }
 
 button {
+    height: 37px;
+    width: 35px;
     font-family: 'Inter', sans-serif;
+}
+
+.add-chore {
+    background-color: #FFCC68;
+}
+
+.remove-chores {
+    background-color: #FF9548;
+}
+
+.add-chore:hover {
+    background-color: #FFBB35;
+}
+
+.remove-chores:hover {
+    background-color: #FF7715;
+}
+
+.add-chore:hover,
+.remove-chores:hover {
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.chores,
+.container {
+    gap: 5px;
+}
+
+input {
+    height: 70px;
+    width: 300px;
+    text-align: center;
+    background-color: #EEEEEE;
+}
+
+input::placeholder {
+    color: #A4A4A4;
+    font-size: 30px;
+    margin: 0 auto;
+}
+
+input,
+button,
+.chore {
+    border-radius: 5px;
+    border: none;
+}
+
+.chore {
+    margin: 0 auto;
+    background-color: #FBDF7C;
+    width: 285px;
+    height: 40px;
+}
+
+.chores {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    text-align: center;
+    padding-top: 5px;
+}
+
+#chore-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
 }
