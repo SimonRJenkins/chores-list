@@ -15,18 +15,37 @@ html,
 body {
     margin: 0;
     padding: 0;
+}
+
+body,
+input,
+.chores {
     text-align: center;
+}
+
+body {
+    background-color: #FEFEFE
 }
 
 h1 {
     font-family: 'Concert One', cursive;
-    font-size: 64px;
+    font-size: 50px;
 }
 
 button {
-    height: 37px;
-    width: 35px;
+    width: 82px;
+}
+
+input,
+button {
+    height: 94px;
+}
+
+button,
+#chore-text,
+input::placeholder {
     font-family: 'Inter', sans-serif;
+    font-size: 30px;
 }
 
 .add-chore {
@@ -46,56 +65,52 @@ button {
 }
 
 .add-chore:hover,
-.remove-chores:hover {
+.remove-chores:hover,
+.chore:hover {
     cursor: pointer;
 }
 
 .container {
     display: flex;
     justify-content: center;
+    padding-bottom: 10px;
 }
 
 .chores,
 .container {
-    gap: 5px;
+    gap: 10px;
 }
 
 input {
-    height: 70px;
-    width: 300px;
-    text-align: center;
+    width: 441px;
     background-color: #EEEEEE;
 }
 
 input::placeholder {
     color: #A4A4A4;
-    font-size: 30px;
-    margin: 0 auto;
 }
 
 input,
 button,
 .chore {
-    border-radius: 5px;
+    border-radius: 10px;
     border: none;
 }
 
 .chore {
     margin: 0 auto;
     background-color: #FBDF7C;
-    width: 285px;
-    height: 40px;
+    width: 630px;
+    height: 92px;
+}
+
+.chore:hover {
+    background-color: #F9D34B;
 }
 
 .chores {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    text-align: center;
     padding-top: 5px;
-}
-
-#chore-text {
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
 }
