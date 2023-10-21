@@ -34,38 +34,37 @@ h1 {
 
 button {
     width: 82px;
+    height: 95px;
 }
 
-input,
-button {
-    height: 94px;
+input {
+    height: 95px;
 }
 
 button,
-#chore-text,
-input::placeholder {
+#chore-text {
     font-family: 'Inter', sans-serif;
     font-size: 30px;
 }
 
-.add-chore {
+#add-chore {
     background-color: #FFCC68;
 }
 
-.remove-chores {
+#remove-chores {
     background-color: #FF9548;
 }
 
-.add-chore:hover {
+#add-chore:hover {
     background-color: #FFBB35;
 }
 
-.remove-chores:hover {
+#remove-chores:hover {
     background-color: #FF7715;
 }
 
-.add-chore:hover,
-.remove-chores:hover,
+#add-chore:hover,
+#remove-chores:hover,
 .chore:hover {
     cursor: pointer;
 }
@@ -78,7 +77,7 @@ input::placeholder {
 
 .chores,
 .container {
-    gap: 10px;
+    gap: 15px;
 }
 
 input {
@@ -88,6 +87,8 @@ input {
 
 input::placeholder {
     color: #A4A4A4;
+    font-family: 'Inter', sans-serif;
+    font-size: 30px;
 }
 
 input,
