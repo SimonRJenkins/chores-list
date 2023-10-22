@@ -30,44 +30,13 @@ body {
 h1 {
     font-family: 'Concert One', cursive;
     font-size: 50px;
+    padding: 15px;
 }
 
 button {
     width: 82px;
-    height: 95px;
 }
 
-input {
-    height: 95px;
-}
-
-button,
-#chore-text {
-    font-family: 'Inter', sans-serif;
-    font-size: 30px;
-}
-
-#add-chore {
-    background-color: #FFCC68;
-}
-
-#remove-chores {
-    background-color: #FF9548;
-}
-
-#add-chore:hover {
-    background-color: #FFBB35;
-}
-
-#remove-chores:hover {
-    background-color: #FF7715;
-}
-
-#add-chore:hover,
-#remove-chores:hover,
-.chore:hover {
-    cursor: pointer;
-}
 
 .container {
     display: flex;
@@ -75,18 +44,27 @@ button,
     padding-bottom: 10px;
 }
 
-.chores,
+.chores-list,
 .container {
     gap: 15px;
 }
 
 input {
     width: 441px;
+    height: 95px;
     background-color: #EEEEEE;
+    color: black;
 }
 
 input::placeholder {
     color: #A4A4A4;
+
+}
+
+input,
+input::placeholder,
+button,
+#chore-text {
     font-family: 'Inter', sans-serif;
     font-size: 30px;
 }
@@ -98,25 +76,51 @@ button,
     border: none;
 }
 
+#add-chore {
+    background-color: #FFCC68;
+}
+
+#clear-chores {
+    background-color: #FF9548;
+}
+
+#add-chore:hover {
+    background-color: #FFBB35;
+}
+
+#clear-chores:hover {
+    background-color: #FF7715;
+}
+
+#add-chore:hover,
+#clear-chores:hover,
+.chore:hover {
+    cursor: pointer;
+}
+
 .chore {
-    margin: 0 auto;
     background-color: #FBDF7C;
-    width: 630px;
+    width: 639px;
     height: 92px;
+    box-sizing: border-box;
 }
 
 .chore:hover {
     background-color: #F9D34B;
 }
 
-.chores {
+.chores-list {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
     padding-top: 5px;
 }
 
-#empty-image {
+#chores-finished {
     display: none;
+}
+
+.chore,
+#chores-finished {
     margin: 0 auto;
 }

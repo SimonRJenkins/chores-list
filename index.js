@@ -1,32 +1,28 @@
-const choresEl = document.querySelector(".chores")
+const choresList = document.querySelector(".chores-list")
 const choreInput = document.getElementById("chore-input")
 const addChoreButton = document.getElementById("add-chore")
-const removeChoresButton = document.getElementById("remove-chores")
+const clearChoresButton = document.getElementById("clear-chores")
+const choresFinished = document.getElementById("chores-finished")
 
-
-function showEmptyImage() {
-    const emptyImage = document.getElementById("empty-image")
+function showChoresFinished() {
     const randomImage = getRandomImage()
-
     const imageURL = `/images/${randomImage}.webp`
-
-    emptyImage.src = imageURL;
-    emptyImage.style.display = "block";
+    choresFinished.src = imageURL
+    choresFinished.style.display = "block"
 }
 
-function hideEmptyImage() {
-    const emptyImage = document.getElementById("empty-image")
-    emptyImage.style.display = "none";
+function hideChoresFinished() {
+    choresFinished.style.display = "none";
 }
 
 function getRandomImage() {
-    const numImages = 4
-    return Math.floor(Math.random() * numImages) + 1;
+    const imagesInFolder = 4
+    return Math.floor(Math.random() * imagesInFolder) + 1
 }
 
 function addChoreToList(choreText) {
 
-    const choreAlreadyExists = Array.from(choresEl.children).some(chore => {
+    const choreAlreadyExists = Array.from(choresList.children).some(chore => {
         const choreTextElement = chore.querySelector("#chore-text")
         return choreTextElement && choreTextElement.innerText === choreText
     })
@@ -34,27 +30,29 @@ function addChoreToList(choreText) {
     if (choreAlreadyExists) {
         alert("Chore is already in the list!")
         choreInput.value = ""
-        return;
+        return
     }
 
-    hideEmptyImage()
+    hideChoresFinished()
 
     const newChore = document.createElement('div')
     newChore.className = 'chore'
     newChore.innerHTML = `<p id="chore-text">${choreText}</p>`
 
-    choresEl.appendChild(newChore)
-    saveChores(choreText)
+    choresList.appendChild(newChore)
+    saveChoresToLocalStorage(choreText)
+    clearChoresButton.disabled = false
 
     choreInput.value = ""
 
     newChore.addEventListener("click", function () {
-        choresEl.removeChild(newChore)
+        choresList.removeChild(newChore)
 
         removeChoreFromLocalStorage(choreText)
 
-        if (choresEl.childElementCount === 0) {
-            showEmptyImage()
+        if (choresList.childElementCount === 0) {
+            showChoresFinished()
+            clearChoresButton.disabled = true
         }
     })
 
@@ -64,7 +62,7 @@ addChoreButton.addEventListener("click", function () {
     addChoreToList(choreInput.value)
 })
 
-function saveChores() {
+function saveChoresToLocalStorage() {
     if (addChoreButton.disabled) {
         return;
     }
@@ -83,12 +81,12 @@ function saveChores() {
 }
 
 function removeChoreFromLocalStorage(choreText) {
-    const storedChores = getStoredChores()
+    const storedChores = getChoresFromLocalStorage()
     const updatedChores = storedChores.filter(chore => chore !== choreText)
     localStorage.setItem("chores", JSON.stringify(updatedChores))
 }
 
-function getStoredChores() {
+function getChoresFromLocalStorage() {
     const storedData = localStorage.getItem("chores")
 
     if (storedData) {
@@ -102,13 +100,12 @@ function getStoredChores() {
     return []
 }
 
-function loadChores() {
-    const storedChores = getStoredChores()
+function loadStoredChores() {
+    const storedChores = getChoresFromLocalStorage()
     storedChores.forEach(choreText => {
         addChoreToList(choreText)
     })
 }
-
 
 function validateInput() {
     if (choreInput.value === "") {
@@ -121,21 +118,21 @@ function validateInput() {
 choreInput.addEventListener("input", validateInput)
 
 window.addEventListener("beforeunload", function () {
-    saveChores();
+    saveChoresToLocalStorage();
 })
 
 window.addEventListener("load", function () {
     validateInput()
-    loadChores()
+    loadStoredChores()
+    clearChoresButton.disabled = true
 })
 
-
-removeChoresButton.addEventListener("click", function () {
-    while (choresEl.firstChild) {
-        choresEl.removeChild(choresEl.firstChild)
+clearChoresButton.addEventListener("click", function () {
+    while (choresList.firstChild) {
+        choresList.removeChild(choresList.firstChild)
 
     }
     localStorage.removeItem("chores")
-
-    showEmptyImage()
+    showChoresFinished()
+    clearChoresButton.disabled = true
 })
