@@ -115,3 +115,8 @@ button,
     flex-direction: column;
     padding-top: 5px;
 }
+
+#empty-image {
+    display: none;
+    margin: 0 auto;
+}

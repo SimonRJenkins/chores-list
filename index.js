@@ -3,7 +3,28 @@ const choreInput = document.getElementById("chore-input")
 const addChoreButton = document.getElementById("add-chore")
 const removeChoresButton = document.getElementById("remove-chores")
 
+function showEmptyImage() {
+    const emptyImage = document.getElementById("empty-image")
+    emptyImage.style.display = "block";
+}
+
+function hideEmptyImage() {
+    const emptyImage = document.getElementById("empty-image")
+    emptyImage.style.display = "none";
+}
+
 function addChoreToList(choreText) {
+
+    const choreAlreadyExists = Array.from(choresEl.children).some(chore => {
+        const choreTextElement = chore.querySelector("#chore-text")
+        return choreTextElement && choreTextElement.innerText === choreText
+    })
+
+    if (choreAlreadyExists) {
+        alert("Chore is already in the list!")
+        choreInput.value = ""
+        return;
+    }
 
     const newChore = document.createElement('div')
     newChore.className = 'chore'
@@ -18,9 +39,17 @@ function addChoreToList(choreText) {
         choresEl.removeChild(newChore)
 
         removeChoreFromLocalStorage(choreText)
+
+        if (choresEl.childElementCount === 0) {
+            showEmptyImage()
+        }
     })
 
 }
+
+addChoreButton.addEventListener("click", function () {
+    addChoreToList(choreInput.value)
+})
 
 function saveChores() {
     if (addChoreButton.disabled) {
@@ -91,6 +120,9 @@ window.addEventListener("load", function () {
 removeChoresButton.addEventListener("click", function () {
     while (choresEl.firstChild) {
         choresEl.removeChild(choresEl.firstChild)
+
     }
     localStorage.removeItem("chores")
+
+    showEmptyImage()
 })
