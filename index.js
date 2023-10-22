@@ -3,14 +3,25 @@ const choreInput = document.getElementById("chore-input")
 const addChoreButton = document.getElementById("add-chore")
 const removeChoresButton = document.getElementById("remove-chores")
 
+
 function showEmptyImage() {
     const emptyImage = document.getElementById("empty-image")
+    const randomImage = getRandomImage()
+
+    const imageURL = `/images/${randomImage}.webp`
+
+    emptyImage.src = imageURL;
     emptyImage.style.display = "block";
 }
 
 function hideEmptyImage() {
     const emptyImage = document.getElementById("empty-image")
     emptyImage.style.display = "none";
+}
+
+function getRandomImage() {
+    const numImages = 4
+    return Math.floor(Math.random() * numImages) + 1;
 }
 
 function addChoreToList(choreText) {
@@ -25,6 +36,8 @@ function addChoreToList(choreText) {
         choreInput.value = ""
         return;
     }
+
+    hideEmptyImage()
 
     const newChore = document.createElement('div')
     newChore.className = 'chore'
